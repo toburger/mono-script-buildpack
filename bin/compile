@@ -47,10 +47,10 @@ cd ${BUILD_DIR}
 
 if [ -f paket.lock ]; then
   echo "-----> paket.lock found, restoring packages with paket"
-  mono /app/mono/bin/paket.exe restore
+  mono "${CACHE_DIR}/$STACK/vendor/mono/bin/paket.exe" restore
 elif [ -f paket.dependencies ]; then
   echo "-----> paket.dependencies found, installing packages with paket"
-  mono /app/mono/bin/paket.exe install
+  mono "${CACHE_DIR}/$STACK/vendor/mono/bin/paket.exe" install
 fi
 
 if [ -f packages.config -o -f */packages.config ]; then
