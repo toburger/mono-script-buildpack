@@ -36,6 +36,7 @@ ln -s "${BUILD_DIR}/vendor/mono" /app
 
 cp -p /app/mono/bin/fsharpc /app/mono/bin/fsharpc-heroku
 cp -p /app/mono/bin/fsharpi /app/mono/bin/fsharpi-heroku
+cp -p "${CACHE_DIR}/$STACK/vendor/mono/bin/paket.exe" /app/mono/bin/paket.exe
 
 echo "-----> Setting envvars"
 export PATH="/app/mono/bin:$PATH"
@@ -46,11 +47,11 @@ cp -r ~/.config ${BUILD_DIR}/.
 cd ${BUILD_DIR}
 
 if [ -f paket.lock ]; then
-  echo "-----> paket.lock found, restoring packages with paket -test"
-  mono "${CACHE_DIR}/$STACK/vendor/mono/bin/paket.exe" restore
+  echo "-----> paket.lock found, restoring packages with paket"
+  mono /app/mono/bin/paket.exe" restore
 elif [ -f paket.dependencies ]; then
   echo "-----> paket.dependencies found, installing packages with paket"
-  mono "${CACHE_DIR}/$STACK/vendor/mono/bin/paket.exe" install
+  mono /app/mono/bin/paket.exe install
 fi
 
 if [ -f packages.config -o -f */packages.config ]; then
