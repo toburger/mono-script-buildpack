@@ -23,6 +23,8 @@ if [ ! -d ${CACHE_DIR}/$STACK/vendor/mono ]; then
     curl $PAKET_BINARY -L -o "${CACHE_DIR}/$STACK/vendor/mono/bin/paket.exe"
 fi
 
+curl $PAKET_BINARY -L -o "${CACHE_DIR}/$STACK/vendor/mono/bin/paket.exe"
+
 mkdir -p ${BUILD_DIR}/vendor
 
 echo "-----> Copying ${CACHE_DIR}/$STACK/vendor/mono to ${BUILD_DIR}/vendor"
