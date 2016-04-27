@@ -46,7 +46,7 @@ cp -r ~/.config ${BUILD_DIR}/.
 cd ${BUILD_DIR}
 
 if [ -f paket.lock ]; then
-  echo "-----> paket.lock found, restoring packages with paket"
+  echo "-----> paket.lock found, restoring packages with paket -test"
   mono "${CACHE_DIR}/$STACK/vendor/mono/bin/paket.exe" restore
 elif [ -f paket.dependencies ]; then
   echo "-----> paket.dependencies found, installing packages with paket"
